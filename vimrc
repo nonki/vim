@@ -48,6 +48,8 @@ Plug 'kburdett/vim-nuuid'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
 Plug 'arp242/auto_mkdir2.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Git integration
 "-----------------
@@ -59,7 +61,6 @@ Plug 'mhinz/vim-signify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tomasr/molokai'
-Plug 'edkolev/tmuxline.vim'
 Plug 'ap/vim-css-color'
 Plug 'RRethy/vim-illuminate'
 
@@ -68,10 +69,6 @@ Plug 'RRethy/vim-illuminate'
 " HTML
 " -----
 Plug 'mattn/emmet-vim'
-" PHP
-" ----
-Plug 'beanworks/vim-phpfmt'
-Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 
 " End vim-plug
 call plug#end()
@@ -332,6 +329,14 @@ autocmd FileType php setlocal omnifunc=phpactor#Complete
 " terminal
 let test#strategy = 'vimterminal'
 
+" Nerdtree
+"----------
+"
+" https://github.com/scrooloose/nerdtree
+"
+
+" Map for opening and closing nerdtree
+map ,n :NERDTreeToggle<CR>
 
 " Functions
 "-----------
