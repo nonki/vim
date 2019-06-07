@@ -226,6 +226,9 @@ nnoremap <Leader>al <C-v>apb:sort<CR>
 nmap <silent> <Leader>j <Plug>(ale_previous_wrap)
 " Move to the next ale warning/error
 nmap <silent> <Leader>k <Plug>(ale_next_wrap)
+
+imap jk <Esc>
+
 " Disable default nuuid plugin mappings
 let g:nuuid_no_mappings = 1
 
