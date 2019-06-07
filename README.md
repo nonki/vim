@@ -8,7 +8,8 @@ The included `install.sh` script will install/update any packages you need (assu
 
 **IMPORTANT**: The `install.sh` script will remove any vim plugins you already have installed if they are not specified to be managed by `vim-plug` in the `vimrc` file
 ```sh
-git clone https://github.com/adam-ja/vim-config.git ~/.vim
+cd
+git clone https://github.com/nonki/.vim.git
 ~/.vim/install.sh
 ```
 ## vimrc
