@@ -50,6 +50,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'arp242/auto_mkdir2.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 
 " Git integration
 "-----------------
