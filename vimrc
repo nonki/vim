@@ -98,6 +98,7 @@ set autoindent
 set backspace=indent,eol,start
 " Use 2 spaces instead of 4 for certain filetypes
 autocmd Filetype puppet,ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype java,groovy setlocal noexpandtab
 
 
 " Search
