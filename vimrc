@@ -23,7 +23,6 @@ Plug 'tacahiroy/ctrlp-funky'
 "--------
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
-Plug 'neoclide/coc.nvim', {'do': './install.sh'}
 
 " Utilities
 "-----------
@@ -51,6 +50,7 @@ Plug 'arp242/auto_mkdir2.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'altercation/vim-colors-solarized'
 
 " Git integration
 "-----------------
@@ -61,7 +61,7 @@ Plug 'mhinz/vim-signify'
 "--------------
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'tomasr/molokai'
+"Plug 'tomasr/molokai'
 Plug 'ap/vim-css-color'
 Plug 'RRethy/vim-illuminate'
 
@@ -97,8 +97,8 @@ set autoindent
 " Make backspace work properly (e.g. traverse line breaks)
 set backspace=indent,eol,start
 " Use 2 spaces instead of 4 for certain filetypes
-autocmd Filetype puppet,ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd Filetype java,groovy setlocal noexpandtab
+autocmd Filetype puppet,ruby,yaml,javascript,html setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd Filetype java,groovy,go setlocal noexpandtab
 
 
 " Search
@@ -154,21 +154,6 @@ let g:ale_sign_error = '😠'
 let g:ale_sign_warning = '😒'
 
 
-" COC
-"-----
-
-" Extensions to install
-let g:coc_global_extensions = [
-    \ 'coc-css',
-    \ 'coc-docker',
-    \ 'coc-html',
-    \ 'coc-json',
-    \ 'coc-phpls',
-    \ 'coc-sh',
-    \ 'coc-tsserver',
-    \ 'coc-vetur',
-    \ 'coc-yaml',
-    \]
 
 
 " CtrlP
@@ -270,11 +255,15 @@ nmap <Leader>tg :TestVisit<CR>
 " Use 256 colours for colorschemes
 set t_Co=256
 " Use molokai colorscheme
-if (!empty(glob("~/.vim/plugged/molokai")))
-    let g:molokai_original=1
-    let g:rehash256=1
-    colorscheme molokai
-endif
+"if (!empty(glob("~/.vim/plugged/molokai")))
+"    let g:molokai_original=1
+"    let g:rehash256=1
+"    colorscheme molokai
+"endif
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
 " Use luna theme rather than molokai for vim-airline
 let g:airline_theme='luna'
 " Use powerline font for nice VCS symbols for vim-airline
