@@ -67,6 +67,9 @@ Plug 'RRethy/vim-illuminate'
 
 " Language specifics
 "--------------------
+" GO
+" -----
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
 " HTML
 " -----
 Plug 'mattn/emmet-vim'
@@ -111,6 +114,12 @@ set ignorecase
 " Search as you type
 set incsearch
 
+nnoremap gs :%s/\<<c-r><c-w>\>//g<left><left>
+nnoremap c* *``cgn
+
+" SnipMate
+" --------
+let g:snipMate = { 'snippet_version' : 1  }
 
 " Syntax
 "--------
@@ -185,7 +194,7 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 " Shortcut for Tabularize
-map <F2> :Tabularize /
+nmap <leader>t :Tabularize /
 " Toggle paste mode on/off with F3
 set pastetoggle=<F3>
 " Easy window switching
@@ -216,6 +225,23 @@ nmap <silent> <Leader>k <Plug>(ale_next_wrap)
 
 imap jk <Esc>
 
+" Do not lose selection after indentation.
+vnoremap <silent> < <gv
+vnoremap <silent> > >gv
+
+" file navigation
+nnoremap <leader>e :edit <c-r>=expand("%:.:h") . "/"<cr>
+nnoremap <leader>ef :edit **/
+
+" tabs
+set showtabline=2
+nnoremap L gt
+nnoremap H gT
+nnoremap <leader>ts :tab split<cr>
+nnoremap <leader>tn :tabnew<cr>
+nnoremap <leader>tc :tabclose<cr>
+
+
 " Disable default nuuid plugin mappings
 let g:nuuid_no_mappings = 1
 
@@ -224,30 +250,6 @@ command! -bang W :w<bang>
 command! -bang Q :q<bang>
 command! -bang WQ :wq<bang>
 command! -bang Wq :wq<bang>
-
-" Phpactor mappings
-" Include use statement
-autocmd FileType php nmap <buffer> <Leader>u :call phpactor#UseAdd()<CR>
-" Invoke the context menu
-autocmd FileType php nmap <buffer> <Leader>mm :call phpactor#ContextMenu()<CR>
-" Invoke the navigation menu
-autocmd FileType php nmap <buffer> <Leader>nn :call phpactor#Navigate()<CR>
-" Goto definition of class or class member under the cursor
-autocmd FileType php nmap <buffer> <C-]> :call phpactor#GotoDefinition()<CR>
-" Show brief information about the symbol under the cursor
-autocmd FileType php nmap <buffer> <Leader>K :call phpactor#Hover()<CR>
-
-" vim-test mappings
-" Run all tests
-nmap <Leader>ta :TestSuite<CR>
-" Run all tests in current test file
-nmap <Leader>tf :TestFile<CR>
-" Run single test closest to the cursor
-nmap <Leader>tt :TestNearest<CR>
-" Re-run the last run test
-nmap <Leader>tl :TestLast<CR>
-" Go to the last run test
-nmap <Leader>tg :TestVisit<CR>
 
 " UI / styling
 "--------------
@@ -265,7 +267,7 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 " Use luna theme rather than molokai for vim-airline
-let g:airline_theme='luna'
+"let g:airline_theme='luna'
 " Use powerline font for nice VCS symbols for vim-airline
 let g:airline_powerline_fonts=1
 " Automatically change the screen title
@@ -330,7 +332,7 @@ let test#strategy = 'vimterminal'
 "
 
 " Map for opening and closing nerdtree
-map ,n :NERDTreeToggle<CR>
+map <Leader>n :NERDTreeToggle<CR>
 
 " Functions
 "-----------
