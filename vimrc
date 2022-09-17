@@ -18,6 +18,9 @@ Plugin 'VundleVim/Vundle.vim'
 " Git plugin, available through :G or :Git.
 Plugin 'tpope/vim-fugitive'
 
+" Comment and uncomment code.
+Plugin 'tpope/vim-commentary'
+
 " File tree browser plugin
 Plugin 'preservim/nerdtree'
 
