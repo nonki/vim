@@ -21,6 +21,11 @@ Plugin 'tpope/vim-fugitive'
 " Git plugin to show changes in a file
 Plugin 'airblade/vim-gitgutter'
 
+" Status bar plugin
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'edkolev/tmuxline.vim'
+
 " Comment and uncomment code.
 Plugin 'tpope/vim-commentary'
 
@@ -29,6 +34,12 @@ Plugin 'tpope/vim-surround'
 
 " File tree browser plugin
 Plugin 'preservim/nerdtree'
+
+" File searching
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" Syntax checking
+Plugin 'vim-syntastic/syntastic'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -47,6 +58,9 @@ filetype plugin indent on    " required
 
 " Show numbered lines
 set number
+
+" Keep the cursor vertically centered, where possible
+set scrolloff=999
 
 "
 " }}}
@@ -144,6 +158,14 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
+" Tabs
+set showtabline=2
+nnoremap L gt
+nnoremap H gT
+nnoremap <leader>ts :tab split<cr>
+nnoremap <leader>tn :tabnew<cr>
+nnoremap <leader>tc :tabclose<cr>
+
 " NERDTree bindings
 " Map the <Leader>n key to toggle the NERDTree window
 nnoremap <Leader>n :NERDTreeToggle<CR>
@@ -158,6 +180,31 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 
 " Have nerdtree ignore certain files and directories.
 let NERDTreeIgnore=[ '\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$' ]
+
+"
+" }}}
+
+" AIRLINE ---------------------------------------------------------------- {{{
+"
+"
+"
+
+" Set the theme for airline
+let g:airline_theme='simple'
+
+" Automatically displays all buffers when there's only one tab open.
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+set background=dark
+
+set t_Co=256
+
+" Use 256bit colour
+let g:solarized_termcolors=256
+" Use powerline font for nice VCS symbols for vim-airline
+let g:airline_powerline_fonts=1
 
 "
 " }}}
@@ -182,20 +229,6 @@ augroup END
 "
 "
 
-" Clear status line when vimrc is reloaded.
-set statusline=
-
-" Status line left side.
-set statusline+=\ %F\ %M\ %Y\ %R
-
-" Use a divider to separate the left side from the right side.
-set statusline+=%=
-
-" Status line right side.
-set statusline+=\ row:\ %l\ col:\ %c\ percent:\ %p%%
-
-" Show the status on the second to last line.
-set laststatus=2
 
 "
 " }}}
