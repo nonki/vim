@@ -18,8 +18,14 @@ Plugin 'VundleVim/Vundle.vim'
 " Git plugin, available through :G or :Git.
 Plugin 'tpope/vim-fugitive'
 
+" Git plugin to show changes in a file
+Plugin 'airblade/vim-gitgutter'
+
 " Comment and uncomment code.
 Plugin 'tpope/vim-commentary'
+
+" Surround and de-surround text with cs, ds, ys, etc.
+Plugin 'tpope/vim-surround'
 
 " File tree browser plugin
 Plugin 'preservim/nerdtree'
@@ -146,9 +152,12 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 " }}}
 
 " NERDTree ---------------------------------------------------------------- {{{
+"
+"
+"
 
 " Have nerdtree ignore certain files and directories.
-let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
+let NERDTreeIgnore=[ '\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$' ]
 
 "
 " }}}
