@@ -46,6 +46,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Code completion
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
+" Golang support
+Plug 'fatih/vim-go'
+
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -203,6 +206,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 set background=dark
+colorscheme slate
 
 set t_Co=256
 
@@ -384,6 +388,18 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+"
+" }}}
+
+" VIM-GO ------------------------------------------------------------ {{{
+"
+"
+"
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_extra_types = 1
 
 "
 " }}}
