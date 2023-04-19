@@ -49,6 +49,8 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " Golang support
 Plug 'fatih/vim-go'
 
+Plug 'sheerun/vim-polyglot'
+
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -166,6 +168,11 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
+" vim-go keybinds
+nnoremap <Leader>gl :GoAlternate<CR>
+nnoremap <Leader>gtt :GoTest<CR>
+nnoremap <Leader>gtf :GoTestFunc<CR>
+
 " Tabs
 set showtabline=2
 nnoremap L gt
@@ -198,7 +205,7 @@ let NERDTreeIgnore=[ '\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$',
 "
 
 " Set the theme for airline
-let g:airline_theme='simple'
+let g:airline_theme='owo'
 
 " Automatically displays all buffers when there's only one tab open.
 let g:airline#extensions#tabline#enabled = 1
@@ -397,9 +404,14 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 "
 "
 
+let g:go_auto_type_info = 1
+let g:go_auto_sameids = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_extra_types = 1
+let g:go_highlight_function_calls = 1
+let g:go_fmt_command = "goimports"
+let g:go_addtags_transform= 'camelcase'
 
 "
 " }}}
