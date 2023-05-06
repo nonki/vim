@@ -1,6 +1,6 @@
 " VIM-PLUG ------------------------------------------------------ {{{
-" 
-"   
+"
+"
 "
 
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -31,6 +31,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 
+Plug 'sainnhe/everforest'
+
 " Comment and uncomment code.
 Plug 'tpope/vim-commentary'
 
@@ -51,6 +53,8 @@ Plug 'fatih/vim-go'
 
 Plug 'sheerun/vim-polyglot'
 
+Plug 'nathanaelkane/vim-indent-guides'
+
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -59,8 +63,8 @@ filetype plugin indent on    " required
 " }}}
 
 " VIEW PREFERENCES ------------------------------------------------------ {{{
-" 
-"   
+"
+"
 "
 
 " Show numbered lines
@@ -76,8 +80,8 @@ set backspace=indent,eol,start
 " }}}
 
 " SYNTAX HIGHLIGHTING ---------------------------------------------------- {{{
-" 
-"   
+"
+"
 "
 
 " Enable syntax highlighting
@@ -87,8 +91,8 @@ syntax on
 " }}}
 
 " CODE FORMATTING ---------------------------------------------------- {{{
-" 
-"   
+"
+"
 "
 
 set shiftwidth=4
@@ -101,8 +105,8 @@ set softtabstop=4
 " }}}
 
 " SEARCH ------------------------------------------------------------ {{{
-" 
-"   
+"
+"
 "
 
 " Ignore capital letters during search.
@@ -125,8 +129,8 @@ set hlsearch
 " }}}
 
 " WILD MODE ------------------------------------------------------------ {{{
-" 
-"   
+"
+"
 "
 
 " Make wildmenu behave like similar to Bash completion.
@@ -143,7 +147,7 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 " }}}
 
 " KEY BINDINGS------------------------------------------------------------ {{{
-" 
+"
 " Various key bindings
 "
 
@@ -151,7 +155,7 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 inoremap jk <Esc>
 
 " Make <Space> the <Leader> key instead of the default \
-let mapleader = ' ' 
+let mapleader = ' '
 
 " Disable search highlighting with leader and backslash
 nnoremap <Leader>\ :nohlsearch<CR>
@@ -188,7 +192,7 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 "
 " }}}
 
-" NERDTree ---------------------------------------------------------------- {{{
+"i NERDTree ---------------------------------------------------------------- {{{
 "
 "
 "
@@ -204,8 +208,11 @@ let NERDTreeIgnore=[ '\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$',
 "
 "
 
+" Important!!
+set termguicolors
+
 " Set the theme for airline
-let g:airline_theme='owo'
+let g:airline_theme='everforest'
 
 " Automatically displays all buffers when there's only one tab open.
 let g:airline#extensions#tabline#enabled = 1
@@ -213,14 +220,24 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 set background=dark
-colorscheme slate
 
-set t_Co=256
+"set t_Co=256
 
 " Use 256bit colour
 let g:solarized_termcolors=256
+
 " Use powerline font for nice VCS symbols for vim-airline
 let g:airline_powerline_fonts=1
+
+" For dark version.
+set background=dark
+" Set contrast.
+" This configuration option should be placed before `colorscheme everforest`.
+" Available values: 'hard', 'medium'(default), 'soft'
+let g:everforest_background = 'soft'
+" For better performance
+let g:everforest_better_performance = 1
+colorscheme everforest
 
 "
 " }}}
@@ -424,3 +441,73 @@ let g:go_addtags_transform= 'camelcase'
 
 "
 " }}}
+
+" YAML -------------------------------------------{{{
+"
+"
+"
+
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+"
+"
+" }}}
+
+" FOLDING ------------------------------ {{{
+"
+"
+
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+
+"
+"}}}
+
+set list
+set listchars=tab:\|·,trail:`,multispace:\|···
+
+" Automatically change the screen title
+set title
+" Show the current cursor position in the status line
+set ruler
+" Always show the status line
+set laststatus=2
+" Highlight the line the cursor is currently on
+set cursorline
+" Draw a vertical line at 120 characters
+set colorcolumn=120
+" Enable indent guides by default
+let g:indent_guides_enable_on_vim_startup = 1
+" Just use one character to highlight indent level rather than highlighting
+" the full indent block
+let g:indent_guides_guide_size = 1
+" Start indent guides from level 2 - no need to see it on column 1
+let g:indent_guides_start_level = 2
+" Use custom colours for indent guides (subtly darker than Molokai CursorColumn)
+let g:indent_guides_auto_colors = 0
+highlight IndentGuidesOdd  guibg=#39382d
+highlight IndentGuidesEven guibg=#39382d
+
+" Remove trailing spaces when saving a buffer
+autocmd BufWritePre * :call Preserve("%s/\\s\\+$//e")
+
+" Functions
+"-----------
+
+" http://technotales.wordpress.com/2010/03/31/preserve-a-vim-function-that-keeps-your-state/
+function! Preserve(command)
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    execute a:command
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+" hide abandoned buffers
+set hidden
